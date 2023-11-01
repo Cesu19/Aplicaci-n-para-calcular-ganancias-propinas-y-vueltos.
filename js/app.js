@@ -13,10 +13,22 @@ function guardarCliente() {
 
     //Revisar si hay campos vacios
     const camposVacios = [mesa, hora].some( campo => campo==='');
-    if(camposVacios){
-        console.log('Sí hay al menos un campo vacío')
+
+    const existeAlerta = document.querySelector('.invalid-feedback');
+    if(!existeAlerta){
+        if(camposVacios){
+            const alerta = document.createElement('DIV');
+            alerta.classList.add('invalid-feedback', 'd-block', 'text-center')
+            alerta.textContent = 'Todos los campos son obligatorios'
+            document.querySelector('.modal-body form').appendChild(alerta);
+
+            setTimeout(() => {
+                alerta.remove();
+            }, 3000);
+           } 
+           return;
     }
-    else{
-        console.log('Todos los campos están llenos');
-    }
+        
+    
 }
+
