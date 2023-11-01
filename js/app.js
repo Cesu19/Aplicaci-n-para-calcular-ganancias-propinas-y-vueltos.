@@ -13,10 +13,12 @@ function guardarCliente() {
 
     //Revisar si hay campos vacios
     const camposVacios = [mesa, hora].some( campo => campo==='');
-
-    const existeAlerta = document.querySelector('.invalid-feedback');
-    if(!existeAlerta){
-        if(camposVacios){
+    
+    if(camposVacios){
+        //Verifica sí existe una alerta previa
+        const existeAlerta = document.querySelector('.invalid-feedback');
+        
+        if(!existeAlerta){
             const alerta = document.createElement('DIV');
             alerta.classList.add('invalid-feedback', 'd-block', 'text-center')
             alerta.textContent = 'Todos los campos son obligatorios'
@@ -28,7 +30,12 @@ function guardarCliente() {
            } 
            return;
     }
-        
+    //Asiga los datos del formulario al cliente
+    cliente = {...cliente, mesa, hora}
     
+    // Ocultar Modal
+    const modalFormulario = document.querySelector('#formulario');
+    const modalBootstrap = bootstrap.Modal.getInstance(modalFormulario);
+    modalBootstrap.hide();
 }
 
