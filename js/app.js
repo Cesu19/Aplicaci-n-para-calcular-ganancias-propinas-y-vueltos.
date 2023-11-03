@@ -39,12 +39,23 @@ function guardarCliente() {
     modalBootstrap.hide();
 
     mostrarSecciones();
+
+    //Obtener datos de la API Json-Server
+    obtenerPlatos();
 }
 
 //Mostrar las secciones
 function mostrarSecciones () {
     const seccionesOcultas =document.querySelectorAll('.d-none');
     seccionesOcultas.forEach(seccion => seccion.classList.remove('d-none'));
+}
+
+function obtenerPlatos() {
+    const url = `http://localhost:4000/platillos`
+        fetch(url)
+        .then(respuesta => respuesta.json())
+        .then(resultado => console.log(resultado))
+        .catch(error => console.log(error));
 }
 
 
