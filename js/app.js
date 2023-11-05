@@ -76,13 +76,26 @@ function mostrarPlatos(platos){
         nombre.textContent = plato.nombre;
 
         const precio = document.createElement('DIV')
-        precio.classList.add('col-md-4','fw-bold');
+        precio.classList.add('col-md-3','fw-bold');
         precio.textContent = `$${plato.precio}`;
 
         const categoria = document.createElement('DIV');
         categoria.classList.add('col-md3');
         categoria.textContent= categorias[plato.categoria];
 
+        const inputCantidad = document.createElement('INPUT');
+        inputCantidad.type = 'number';
+        inputCantidad.min = 0;
+        inputCantidad.value = 0;
+        inputCantidad.id= `producto-${plato.id}`;
+        inputCantidad.classList.add('form-control');
+
+        const agregar = document.createElement('DIV')
+        agregar.classList.add('col-md-2');
+        agregar.appendChild(inputCantidad);
+        
+        
+        row.appendChild(agregar);
         row.appendChild(categoria);
         row.appendChild(precio);
         row.appendChild(nombre);
