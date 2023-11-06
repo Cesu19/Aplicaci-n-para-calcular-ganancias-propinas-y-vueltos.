@@ -80,7 +80,7 @@ function mostrarPlatos(platos){
         precio.textContent = `$${plato.precio}`;
 
         const categoria = document.createElement('DIV');
-        categoria.classList.add('col-md3');
+        categoria.classList.add('col-md-3');
         categoria.textContent= categorias[plato.categoria];
 
         const inputCantidad = document.createElement('INPUT');
@@ -89,6 +89,15 @@ function mostrarPlatos(platos){
         inputCantidad.value = 0;
         inputCantidad.id= `producto-${plato.id}`;
         inputCantidad.classList.add('form-control');
+
+        // Function para detectar el plato y la cantidad
+
+        inputCantidad.onchange = function(){
+            const cantidad = parseInt( inputCantidad.value );
+            agregarPlato({...plato, cantidad});
+            
+        }
+        
 
         const agregar = document.createElement('DIV')
         agregar.classList.add('col-md-2');
@@ -101,4 +110,8 @@ function mostrarPlatos(platos){
         row.appendChild(nombre);
         contenido.appendChild(row);
     })
+}
+
+function agregarPlato(producto){
+    console.log(producto);           
 }
